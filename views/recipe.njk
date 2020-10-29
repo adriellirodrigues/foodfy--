@@ -1,0 +1,59 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+            
+            <div id="{{item[recipeIndex]}}" class="recipe">
+                <div class="image__card">
+                    <img src="{{item.image}}" alt="Imagem de {{item.title}}">
+                </div>
+                <div class="title__recipe">
+                    <h4>{{item.title}}</h4>
+                </div>
+                <div class="author__recipe">
+                    <p>{{item.author}}</p>
+                </div>
+                <div class="section__ingredients">
+                    <h3>Ingredientes</h3>
+                    <button id="button-hide-ingredients" onclick="hideIngredients()">Esconder</button>
+                </div> 
+                <div id="ingredients" class="ingredients__list"> 
+                    <ul> 
+                    
+                    {% for ingredients in item.ingredients %}
+                        
+                     <li>{{ingredients}}</li> 
+                    {% endfor %}
+                       
+                    </ul>
+                </div>
+                <div class="section__preparation">
+                    <h3>Modo de Preparo</h3>
+                    <button id="button-hide-preparation" onclick="hidePreparation()">Esconder</button>
+                </div>
+                <div id="preparation-mode" class="preparation">
+                     {% for preparation in item.preparation %}
+                        
+                     <li>{{preparation}}</li> 
+                    {% endfor %}
+               
+                </div>
+
+                <div class="section__information">
+                     <h3>Informações adicionais</h3>
+                    <button id="button-hide-info" onclick="hideInformation()">Esconder</button>
+                 </div>   
+                    <div id="information" class="information">
+                        <p>{{item.information}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <script src="/scripts.js"></script>
+       
+
+{% endblock %}
+  
+
