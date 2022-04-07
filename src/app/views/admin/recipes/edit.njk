@@ -1,0 +1,111 @@
+{% extends "../layout.njk" %}
+
+{% block head %}
+    <title>
+        Admin | Edit Recipe</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="block-content">
+
+            <div class="header__page">
+                
+                <h4>Editing recipe</h4>
+
+                    <div class="h-buttons">
+
+                        <form id="form-delete" method="post" action="/admin/recipes?_method=DELETE">
+                            <button class="delete-button" form="form-delete" type="submit">Delete</button>
+                            <input type="hidden" name="id" value="{{  recipe.id  }}">
+                        </form>
+                        
+                        <button form="save-recipe" type="submit">Save recipe</button>
+                        
+                     </div>
+                </div>
+                
+                <form id="save-recipe" method="POST" action="/admin/recipes?_method=PUT">
+                <div class="item">
+                    <div>
+                        <p>Image</p>
+                    </div>
+                    <div>
+                        <input type="url" name="image" value="{{recipe.image}}"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <p>Chef</p>
+                    </div>
+                    <div>
+                        <select name="chef">
+                            {% for chef in chefOptions %}
+                                <option value="{{chef.id}}" {% if recipe.chef_id == chef.id  %} selected="selected" {% endif %}>{{chef.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <p>Title</p>
+                    </div>
+                    <div>
+                        <input type="text" name="title" value="{{recipe.title}}"/>
+                    </div>
+                </div>
+                <div id="ingredients" class="item">
+                    <div>
+                        <p>Ingredients</p>
+                    </div>
+                        {% for ingredients in recipe.ingredients %}
+                    <div class="ingredient">
+                            <input type="text" name="ingredients[]" value="{{ingredients}}"/>
+                    </div>
+                       {% else %}
+                    <div class="ingredient">
+                        <input type="text" name="ingredients[]" value="">
+                    </div>
+                {% endfor %}
+                </div>
+                <a class="add-ingredient">Add Ingredient</a>
+
+
+
+                  <div id="instructions" class="item">
+                    <div>
+                        <p>Instructions</p>
+                    </div>
+                        {% for instructions in recipe.instructions %}
+                    <div class="instruction">
+                            <input type="text" name="instructions[]" value="{{instructions}}"/>
+                    </div>
+                        {% else %}
+                    <div class="instruction">
+                        <input type="text" name="instructions[]" value="">
+                    </div>
+                {% endfor %}
+                </div>
+                <a class="add-instruction">Add Instruction</a>
+
+                <div class="item">
+                    <div>
+                        <p>Additional Information</p>
+                    </div>
+                    <div>
+                        <input name="information" id="info" value="{{ recipe.information }}"/>
+
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="{{  recipe.id  }}"/>
+        </form>
+
+    </div>
+
+    <script src="../../../scripts.js"></script>
+
+    {% include "./confirmation.njk" %}
+
+{% endblock %}

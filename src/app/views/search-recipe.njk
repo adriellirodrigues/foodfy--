@@ -1,0 +1,42 @@
+{% extends "layout.njk" %}
+{% block head %}
+    <title>Search Recipes</title>
+{% endblock %}
+
+{% block header %}
+     <div class="search">
+        <form action="/search-recipe" method="GET">
+                <input type="text" name="filter"
+                    placeholder="Search a recipe"
+                    value="{{   filter  }}">
+                <button type="submit">Search</button>
+        </form>
+    </div>
+     <div 
+      data-filter={{filter}}
+      >
+    </div>
+{% endblock %}
+ 
+{% block content %}
+    <div class="header__page">
+        <h4>Search for:{{filter}}</h4>
+    </div>
+      <div class="cards">
+            {% for recipe in recipes %}
+                    <div class="card item" 
+                        onclick="location.href='/recipes/{{recipe.id}}';">
+                            <div class="image__card">
+                                <img src="{{recipe.image}}" 
+                                    alt="Imagem de {{recipe.title}}">
+                            </div>
+                            <div class="title__card">
+                                <h4>{{recipe.title}}</h4>
+                            </div>
+                            <div class="author__recipe">
+                                <p>by {{recipe.chef_name}}</p>
+                            </div>
+                    </div>
+           {%  endfor %}
+        </div>
+{% endblock %}

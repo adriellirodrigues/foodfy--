@@ -1,0 +1,38 @@
+{% extends "../layout.njk" %}
+
+{% block head %} <title> Admin | Manage Recipes</title> {% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="header__page">
+            <h4>Manage recipes</h4>
+        </div>
+        <div class="cards">
+               
+            {% for recipe in recipes  %}
+
+                <div class="card" onclick="location.href='/admin/recipes/{{recipe.id}}';">
+                    <div class="image__card">
+                        <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                    </div>
+                    <div class="details-item">
+                            <div class="title__card">
+                                <h4>{{recipe.title}}</h4>
+                            </div>
+                            <div class="author__recipe">
+                                <p>by {{recipe.chef_name}}</p>
+                            </div>
+                            <button onclick="location.href='/admin/recipes/{{recipe.id}}';"> View</button>
+                     </div>
+                </div>
+
+           {%  endfor %}
+         </div>
+    </div>
+
+{% endblock %} 
+ 
+
+
+

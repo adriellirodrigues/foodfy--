@@ -1,0 +1,63 @@
+{% extends "../layout.njk" %}
+
+{% block head %} <title> Admin | Details Recipe</title> {% endblock %}
+
+{% block content %}
+
+    <div class="content">
+     
+           <div class="recipe">
+                <div class="title__recipe">
+                    <h4>Receita: {{recipe.title}}</h4>
+                    {# <button  id="button-edit-recipe" onclick="location.href='/admin/recipes/{id}/edit';">Edit Recipe</button> #}
+                    <button onclick="location.href='/admin/recipes/{{recipe.id}}/edit';">Edit Recipe</button>
+                </div>
+                <div class="image__card">
+                    <img src="{{recipe.image}}" alt="Imagem de {{recipe.image}}">
+                </div>
+                
+                <div class="sub-title">
+                    <h1>{{recipe.title}}</h1>
+                    <div class="author__recipe">
+                        <p>by {{recipe.chef_name}}</p>
+                    </div>
+                </div>
+                <div class="section__ingredients">
+                    <h3>Ingredientes</h3>
+                </div> 
+                <div id="ingredients" class="ingredients__list"> 
+                    <ul>
+                        {% for ingredients in recipe.ingredients %}
+                        
+                        <li>{{ingredients}}</li> 
+                        
+                        {%   endfor %}
+                    </ul>
+                </div>
+                <div class="section__instructions">
+                    <h3>Instructions</h3>
+                </div>
+                <div id="instructions" class="instructions__list">
+                      <ul>
+                        {% for instructions in recipe.instructions %}
+                              <li>{{instructions}}</li> 
+                        {% endfor %}  
+                     </ul>
+                </div>
+
+                <div class="section__information">
+                     <h3>Additional Information</h3>
+                 </div>   
+                    <div id="information" class="information">
+                        <p>{{recipe.information}}</p>
+                    </div>
+                </div>
+            </div>
+  
+        <script src="../../scripts.js"></script>
+
+{% endblock %} 
+ 
+
+
+

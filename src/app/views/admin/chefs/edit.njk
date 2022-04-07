@@ -1,0 +1,42 @@
+{% extends "../layout.njk" %}
+
+{% block head %}
+    <title>
+        Admin | Edit Chef</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="header__page">
+            <h4>Editing chef</h4>
+            <form method="post" action="/admin/chefs?_method=DELETE">
+
+                <input type="hidden" name="id" value="{{  chef.id  }}">
+                <div class="h-buttons">
+                    <button class="delete-button" type="submit">Delete</button>
+                </form>
+                <form method="POST" action="/admin/chefs?_method=PUT">
+                    <button type="submit">Save chef</button>
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <p>Name</p>
+                </div>
+                <div>
+                    <input type="text" name="name" value="{{chef.name}}"/>
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <p>Avatar</p>
+                </div>
+                <div>
+                    <input type="url" name="avatar_url" placeholder="http://" value="{{chef.avatar_url}}"/>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="{{  chef.id  }}"/>
+        </div>
+
+    {% endblock %}

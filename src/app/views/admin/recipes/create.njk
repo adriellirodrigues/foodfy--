@@ -1,0 +1,66 @@
+{% extends "../layout.njk" %}
+
+{% block head %} <title> Admin | Create Recipe</title> {% endblock %}
+
+{% block content %}
+
+    <form class="content" method="POST" action="/admin/recipes/create">
+           <div class="block-content">
+                <div class="header__page">
+                    <h4>Creating recipe</h4>
+                    <button class="button" type="submit">Save recipe</button>
+                </div>
+                <div class="item">
+                    <div><p>Image</p></div>
+                    <div> <input type="url" name="image" 
+                    placeholder="http://"></div>
+                </div>
+                <div class="item">
+                    <div>
+                       <p>Chef</p> 
+                    </div>
+                    <div>
+                        <select name="chef">
+                            {% for chef in chefOptions %}
+                                <option value="{{chef.id}}"  {% if recipe.chef_id == chef.id  %} selected="selected"{% endif %}>{{chef.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div><p>Title</p></div>
+                    <div>
+                        <input type="text" name="title" />
+                    </div>
+                </div>
+                <div id="ingredients" class="item">
+                    <div><p>Ingredients</p></div>
+                    <div class="ingredient">
+                        <input type="text" name="ingredients[]" />
+                    </div>
+                </div>
+                <a class="add-ingredient" onclick="addIngredient()">Add Ingredient</a>
+
+               <div id="instructions" class="item">
+                    <div><p>Instructions</p></div>
+                    <div class="instruction">
+                        <input type="text" name="instructions[]" />
+                    </div>
+                </div>  
+                <a class="add-instruction" onclick="addInstruction()">Add Instruction</a>
+                
+                 <div class="item">
+                    <div><p>Additional Information</p></div>
+                    {# <div><input type="text" name="information" id="info"></div> #}
+                    <div><textarea name="information" id="info"></textarea></div> 
+                </div>
+            </div>
+         </form>
+   
+        <script src="../../../scripts.js"></script>
+
+{% endblock %} 
+ 
+
+
+
